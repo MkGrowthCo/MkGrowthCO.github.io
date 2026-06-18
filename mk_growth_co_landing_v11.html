@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MK Growth Co</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  :root {
+    --gold: #B8923A;
+    --gold-dark: #8B6914;
+    --black: #0E0E0E;
+    --ink: #1A1A1A;
+    --white: #FDFCFA;
+    --cream: #F7F4EE;
+    --cream-2: #F0EBE0;
+    --dim: rgba(20,20,20,0.6);
+    --line: rgba(20,20,20,0.1);
+  }
+  html { scroll-behavior: smooth; }
+  body { font-family: 'Montserrat', sans-serif; background: var(--white); color: var(--black); overflow-x: hidden; }
+
+  nav {
+    position: sticky; top: 0; z-index: 100;
+    padding: 0.9rem 3rem;
+    display: flex; justify-content: space-between; align-items: center;
+    background: rgba(253,252,250,0.97);
+    border-bottom: 1px solid var(--line);
+  }
+  .nav-logo { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; letter-spacing: 0.3em; color: var(--black); text-decoration: none; }
+  .nav-logo span { font-weight: 600; color: var(--gold); }
+  nav ul { display: flex; gap: 2rem; list-style: none; }
+  nav ul a { font-size: 0.62rem; font-weight: 500; letter-spacing: 0.18em; text-transform: uppercase; color: var(--dim); text-decoration: none; transition: color 0.3s; cursor: pointer; }
+  nav ul a:hover { color: var(--gold); }
+
+  .hero {
+    display: flex; align-items: center; justify-content: center;
+    padding: 3.5rem 3rem 3rem; text-align: center;
+    background: radial-gradient(ellipse 70% 80% at 50% 50%, rgba(184,146,58,0.06) 0%, transparent 70%), var(--white);
+  }
+  .hero-inner { max-width: 680px; }
+  .hero-eyebrow { font-size: 0.58rem; font-weight: 500; letter-spacing: 0.35em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 1rem; display: flex; align-items: center; justify-content: center; gap: 0.7rem; }
+  .hero-eyebrow::before, .hero-eyebrow::after { content: ''; width: 28px; height: 1px; background: var(--gold); opacity: 0.5; }
+  .hero-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(2.6rem, 5.5vw, 4.8rem); font-weight: 300; line-height: 1.05; color: var(--black); margin-bottom: 0.2em; }
+  .hero-title em { font-style: italic; color: var(--gold-dark); }
+  .hero-sub { font-family: 'Cormorant Garamond', serif; font-size: clamp(0.95rem, 1.8vw, 1.25rem); font-weight: 300; font-style: italic; color: var(--dim); margin-bottom: 1rem; }
+  .hero-desc { font-size: 0.73rem; font-weight: 300; letter-spacing: 0.05em; line-height: 1.85; color: var(--dim); margin-bottom: 1.8rem; }
+  .btn-group { display: flex; gap: 0.8rem; justify-content: center; flex-wrap: wrap; }
+  .btn-primary { padding: 0.8rem 2rem; background: var(--black); color: var(--white); font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; border: none; cursor: pointer; transition: background 0.3s; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { background: var(--gold-dark); }
+  .btn-outline { padding: 0.8rem 2rem; background: transparent; color: var(--black); font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 500; letter-spacing: 0.22em; text-transform: uppercase; border: 1px solid rgba(20,20,20,0.25); cursor: pointer; transition: border-color 0.3s, color 0.3s; text-decoration: none; display: inline-block; }
+  .btn-outline:hover { border-color: var(--gold-dark); color: var(--gold-dark); }
+
+  .stats { border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); padding: 1.5rem 3rem; display: grid; grid-template-columns: repeat(3, 1fr); background: var(--cream); }
+  .stat-item { text-align: center; padding: 0.4rem; }
+  .stat-number { font-family: 'Cormorant Garamond', serif; font-size: 2rem; font-weight: 300; color: var(--gold-dark); line-height: 1; margin-bottom: 0.25rem; }
+  .stat-label { font-size: 0.56rem; font-weight: 500; letter-spacing: 0.16em; text-transform: uppercase; color: var(--dim); }
+
+  .gold-divider { height: 1px; background: linear-gradient(to right, transparent, rgba(184,146,58,0.35), transparent); }
+
+  .section-eyebrow { font-size: 0.56rem; font-weight: 500; letter-spacing: 0.32em; text-transform: uppercase; color: var(--gold-dark); margin-bottom: 0.6rem; }
+  .section-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.7rem, 2.8vw, 2.5rem); font-weight: 300; line-height: 1.15; color: var(--black); margin-bottom: 1.5rem; }
+  .section-title em { font-style: italic; color: var(--gold-dark); }
+  .section-body { font-size: 0.72rem; font-weight: 300; line-height: 1.85; color: var(--dim); }
+
+  #nosotros { padding: 2.8rem 3rem; display: grid; grid-template-columns: 1fr 1.5fr; gap: 3rem; align-items: center; background: var(--cream); }
+  .about-visual { position: relative; height: 300px; }
+  .about-frame { position: absolute; inset: 0; border: 1px solid rgba(184,146,58,0.3); background: var(--white); display: flex; align-items: center; justify-content: center; overflow: hidden; }
+  .about-big-text { font-family: 'Cormorant Garamond', serif; font-size: 6rem; font-weight: 300; color: rgba(184,146,58,0.08); position: absolute; top: 50%; left: 50%; transform: translate(-50%,-50%); white-space: nowrap; }
+  .about-quote { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; font-style: italic; color: var(--gold-dark); line-height: 1.6; position: relative; z-index: 1; padding: 1rem 1.3rem; border-left: 2px solid var(--gold); margin: 1.2rem; }
+  .about-corner { position: absolute; width: 12px; height: 12px; border-color: var(--gold); border-style: solid; opacity: 0.5; }
+  .about-corner.tl { top: 8px; left: 8px; border-width: 1px 0 0 1px; }
+  .about-corner.tr { top: 8px; right: 8px; border-width: 1px 1px 0 0; }
+  .about-corner.bl { bottom: 8px; left: 8px; border-width: 0 0 1px 1px; }
+  .about-corner.br { bottom: 8px; right: 8px; border-width: 0 1px 1px 0; }
+  .about-list { list-style: none; margin-top: 1.2rem; display: flex; flex-direction: column; gap: 0.65rem; }
+  .about-list li { font-size: 0.68rem; font-weight: 300; color: var(--dim); display: flex; align-items: flex-start; gap: 0.7rem; line-height: 1.6; }
+  .about-list li::before { content: '—'; color: var(--gold-dark); flex-shrink: 0; opacity: 0.7; }
+
+  #servicios { padding: 2.8rem 3rem; background: var(--white); }
+  .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; border: 1.5px solid var(--line); margin-top: 1.5rem; background: var(--line); }
+  .service-card { background: var(--white); padding: 2rem 1.8rem; transition: background 0.4s; position: relative; overflow: hidden; }
+  .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 2px; background: linear-gradient(to right, transparent, var(--gold), transparent); opacity: 0; transition: opacity 0.4s; }
+  .service-card:hover { background: var(--cream); }
+  .service-card:hover::before { opacity: 1; }
+  .service-num { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; color: var(--gold-dark); opacity: 0.6; letter-spacing: 0.1em; margin-bottom: 1rem; display: block; }
+  .service-name { font-family: 'Cormorant Garamond', serif; font-size: 1.25rem; font-weight: 300; color: var(--black); line-height: 1.2; margin-bottom: 0.7rem; }
+  .service-desc { font-size: 0.68rem; font-weight: 300; line-height: 1.8; color: var(--dim); }
+  .service-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+  .service-tag { font-size: 0.55rem; font-weight: 500; letter-spacing: 0.15em; text-transform: uppercase; color: var(--gold-dark); border: 1px solid rgba(184,146,58,0.35); padding: 0.25rem 0.6rem; }
+
+  .modalidades { margin-top: 2rem; display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; border: 1.5px solid var(--line); background: var(--line); }
+  .modalidad-card { background: var(--white); padding: 1.8rem; position: relative; overflow: hidden; transition: background 0.4s; }
+  .modalidad-card:hover { background: var(--cream); }
+  .modalidad-num { font-family: 'Cormorant Garamond', serif; font-size: 0.75rem; color: var(--gold-dark); opacity: 0.6; letter-spacing: 0.1em; margin-bottom: 1rem; display: block; }
+  .modalidad-title { font-family: 'Cormorant Garamond', serif; font-size: 1.2rem; font-weight: 300; color: var(--black); margin-bottom: 0.5rem; }
+  .modalidad-title em { font-style: italic; color: var(--gold-dark); }
+  .modalidad-desc { font-size: 0.68rem; font-weight: 300; line-height: 1.8; color: var(--dim); }
+
+  #proceso { padding: 2.8rem 3rem; background: var(--cream); }
+  .process-intro { display: grid; grid-template-columns: 1fr 2fr; gap: 2.5rem; margin-bottom: 2.5rem; align-items: end; }
+  .process-steps { display: grid; grid-template-columns: repeat(4, 1fr); position: relative; }
+  .process-steps::before { content: ''; position: absolute; top: 1.35rem; left: 1.4rem; right: 1.4rem; height: 1px; background: linear-gradient(to right, rgba(184,146,58,0.4), rgba(184,146,58,0.1)); }
+  .process-step { padding-right: 1rem; }
+  .step-num { width: 2.7rem; height: 2.7rem; border: 1px solid rgba(184,146,58,0.4); display: flex; align-items: center; justify-content: center; margin-bottom: 1rem; background: var(--cream); position: relative; }
+  .step-num span { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; color: var(--gold-dark); }
+  .step-title { font-family: 'Cormorant Garamond', serif; font-size: 1.1rem; font-weight: 300; color: var(--black); margin-bottom: 0.4rem; }
+  .step-desc { font-size: 0.66rem; font-weight: 300; line-height: 1.75; color: var(--dim); }
+
+  #contacto { background: var(--ink); text-align: center; padding: 3rem; position: relative; overflow: hidden; color: var(--white); }
+  .cta-bg { position: absolute; inset: 0; background: radial-gradient(ellipse 60% 80% at 50% 50%, rgba(184,146,58,0.1) 0%, transparent 70%); pointer-events: none; }
+  .cta-content { position: relative; }
+  .cta-content .section-eyebrow { color: var(--gold); }
+  .cta-title { font-family: 'Cormorant Garamond', serif; font-size: clamp(1.8rem, 3.5vw, 3.2rem); font-weight: 300; line-height: 1.1; color: var(--white); margin-bottom: 0.9rem; }
+  .cta-title em { font-style: italic; color: var(--gold); }
+  .cta-sub { font-size: 0.72rem; font-weight: 300; color: rgba(253,252,250,0.65); margin-bottom: 1.8rem; line-height: 1.75; }
+  .cta-primary { padding: 0.8rem 2rem; background: var(--gold); color: var(--ink); font-family: 'Montserrat', sans-serif; font-size: 0.6rem; font-weight: 600; letter-spacing: 0.22em; text-transform: uppercase; border: none; cursor: pointer; transition: background 0.3s; text-decoration: none; display: inline-block; }
+  .cta-primary:hover { background: var(--white); }
+  .cta-whatsapp { font-family: 'Cormorant Garamond', serif; font-size: 0.95rem; font-style: italic; color: var(--gold); text-decoration: none; display: flex; align-items: center; justify-content: center; gap: 0.5rem; margin-top: 1.2rem; transition: color 0.3s; }
+  .cta-whatsapp:hover { color: var(--white); }
+
+  footer { padding: 1.3rem 3rem; border-top: 1px solid var(--line); background: var(--cream); display: flex; justify-content: space-between; align-items: center; gap: 1rem; flex-wrap: wrap; }
+  .footer-logo { font-family: 'Cormorant Garamond', serif; font-size: 0.85rem; letter-spacing: 0.28em; color: var(--black); }
+  .footer-copy { font-size: 0.56rem; letter-spacing: 0.08em; color: rgba(20,20,20,0.4); }
+  .footer-links { display: flex; gap: 1.4rem; }
+  .footer-links a { font-size: 0.56rem; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(20,20,20,0.45); text-decoration: none; transition: color 0.3s; }
+  .footer-links a:hover { color: var(--gold-dark); }
+
+  @media (max-width: 900px) {
+    nav { padding: 0.8rem 1.2rem; }
+    nav ul { display: none; }
+    .hero, #servicios, #nosotros, #proceso, #contacto { padding: 2.5rem 1.2rem; }
+    .stats { grid-template-columns: 1fr; padding: 1.2rem; }
+    .services-grid { grid-template-columns: 1fr; }
+    .modalidades { grid-template-columns: 1fr; }
+    #nosotros { grid-template-columns: 1fr; }
+    .about-visual { height: 220px; }
+    .process-intro { grid-template-columns: 1fr; gap: 1rem; margin-bottom: 1.8rem; }
+    .process-steps { grid-template-columns: repeat(2, 1fr); gap: 1.5rem; }
+    .process-steps::before { display: none; }
+    footer { flex-direction: column; text-align: center; padding: 1.2rem; }
+  }
+</style>
+</head>
+<body>
+
+<script>
+  const WA = "https://wa.me/34644977487?text=" + encodeURIComponent("Hola, quiero solicitar una propuesta gratuita para aumentar las reservas de mi alojamiento vacacional.");
+</script>
+
+<nav>
+  <a href="#inicio" class="nav-logo" onclick="document.getElementById('inicio').scrollIntoView({behavior:'smooth'});return false;"><span>MK</span> GROWTH CO</a>
+  <ul>
+    <li><a onclick="document.getElementById('nosotros').scrollIntoView({behavior:'smooth'})">Nosotros</a></li>
+    <li><a onclick="document.getElementById('servicios').scrollIntoView({behavior:'smooth'})">Servicios</a></li>
+    <li><a onclick="document.getElementById('proceso').scrollIntoView({behavior:'smooth'})">Proceso</a></li>
+    <li><a onclick="window.open(WA,'_blank')">Contacto</a></li>
+  </ul>
+</nav>
+
+<section class="hero" id="inicio">
+  <div class="hero-inner">
+    <p class="hero-eyebrow">Instagram · TikTok · Alquiler Turístico</p>
+    <h1 class="hero-title">Tu propiedad,<br><em>tu mejor activo</em></h1>
+    <p class="hero-sub">Más gente viendo tu alojamiento. Más gente reservándolo.</p>
+    <p class="hero-desc">Nos encargamos de las redes sociales de tu alojamiento turístico para que cada vez más personas lo conozcan y decidan reservar. Tú pones la propiedad, nosotros ponemos el contenido, la estrategia y el seguimiento diario.</p>
+    <div class="btn-group">
+      <a onclick="window.open(WA,'_blank')" class="btn-primary" style="cursor:pointer;">Empezar ahora</a>
+      <a onclick="document.getElementById('servicios').scrollIntoView({behavior:'smooth'})" class="btn-outline" style="cursor:pointer;">Ver servicios</a>
+    </div>
+  </div>
+</section>
+
+<div class="stats">
+  <div class="stat-item">
+    <div class="stat-number">+50%</div>
+    <div class="stat-label">Incremento medio de reservas</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">+10</div>
+    <div class="stat-label">Propiedades gestionadas</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-number">4.9★</div>
+    <div class="stat-label">Valoración media en plataformas</div>
+  </div>
+</div>
+
+<div class="gold-divider"></div>
+
+<section id="nosotros">
+  <div class="about-visual">
+    <div class="about-frame">
+      <div class="about-corner tl"></div>
+      <div class="about-corner tr"></div>
+      <div class="about-corner bl"></div>
+      <div class="about-corner br"></div>
+      <div class="about-big-text">MK</div>
+      <blockquote class="about-quote">"Cada propiedad tiene una historia única. Nuestra misión es contarla de la manera correcta."</blockquote>
+    </div>
+  </div>
+  <div>
+    <p class="section-eyebrow">Quiénes somos</p>
+    <h2 class="section-title">Especialistas en <em>alquiler turístico</em></h2>
+    <p class="section-body">Somos MK Growth Co, una agencia que trabaja únicamente con alojamientos turísticos. No nos dispersamos en mil sectores distintos: nos dedicamos a esto, y por eso sabemos exactamente qué tipo de contenido hace que la gente se quede mirando, se interese por tu propiedad y termine reservando.</p>
+    <ul class="about-list">
+      <li>Entendemos qué busca un viajero cuando navega por redes sociales antes de reservar.</li>
+      <li>Sabemos qué tipo de vídeos funcionan mejor en Instagram y en TikTok.</li>
+      <li>Trabajamos con todo tipo de alojamientos: apartamentos, casas, villas y mucho más.</li>
+      <li>Te mostramos resultados claros: cuánta gente ve tu contenido y cuántas reservas llegan.</li>
+    </ul>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<section id="servicios">
+  <p class="section-eyebrow">Lo que hacemos</p>
+  <h2 class="section-title">Tres servicios. <em>Un solo objetivo:</em> llenar tu calendario</h2>
+  <div class="services-grid">
+    <div class="service-card">
+      <span class="service-num">01</span>
+      <h3 class="service-name">Captación de clientes a través de redes sociales</h3>
+      <p class="service-desc">Nos encargamos de que tu alojamiento aparezca en Instagram y TikTok de forma constante, con vídeos y publicaciones pensadas para captar la atención de gente que busca dónde alojarse. Cuanta más gente vea tu propiedad, más posibilidades hay de que te escriba para reservar.</p>
+      <div class="service-tags">
+        <span class="service-tag">Reels</span>
+        <span class="service-tag">TikTok</span>
+        <span class="service-tag">Historias</span>
+        <span class="service-tag">Textos</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">02</span>
+      <h3 class="service-name">Producción de vídeo</h3>
+      <p class="service-desc">Un buen vídeo hace que la gente se imagine quedándose en tu alojamiento. Por eso nosotros mismos vamos a grabar a tu propiedad, o si lo prefieres, te explicamos paso a paso cómo grabarlo tú con tu móvil. Después, nosotros editamos el vídeo y lo dejamos listo para publicar.</p>
+      <div class="service-tags">
+        <span class="service-tag">Vamos nosotros</span>
+        <span class="service-tag">Te guiamos</span>
+        <span class="service-tag">Edición incluida</span>
+      </div>
+    </div>
+    <div class="service-card">
+      <span class="service-num">03</span>
+      <h3 class="service-name">Ayuda con el precio de tu alojamiento</h3>
+      <p class="service-desc">Si tu precio es muy alto, pierdes reservas. Si es muy bajo, pierdes dinero. Te ayudamos a encontrar el precio correcto para cada momento del año, mirando lo que cobran otros alojamientos parecidos cerca de ti, para que ganes lo máximo posible sin quedarte sin huéspedes.</p>
+      <div class="service-tags">
+        <span class="service-tag">Precio por temporada</span>
+        <span class="service-tag">Comparativa de la zona</span>
+      </div>
+    </div>
+  </div>
+
+  <p class="section-eyebrow" style="margin-top:2.5rem;">Cómo grabamos</p>
+  <h3 class="section-title" style="font-size:clamp(1.4rem,2.2vw,2rem); margin-bottom:0.5rem;">Dos formas de trabajar, <em>tú eliges</em></h3>
+  <p class="section-body" style="margin-bottom:0;">Lo importante es que el contenido salga adelante, da igual quién sostenga la cámara.</p>
+  <div class="modalidades">
+    <div class="modalidad-card">
+      <span class="modalidad-num">A</span>
+      <h4 class="modalidad-title">Vamos nosotros <em>a grabar</em></h4>
+      <p class="modalidad-desc">Nos desplazamos hasta tu alojamiento con nuestro propio equipo y grabamos todo lo necesario. Tú no tienes que preocuparte de nada: nosotros planificamos qué grabar, lo grabamos y después lo editamos, todo de principio a fin.</p>
+    </div>
+    <div class="modalidad-card">
+      <span class="modalidad-num">B</span>
+      <h4 class="modalidad-title">Tú grabas, <em>nosotros lo dejamos listo</em></h4>
+      <p class="modalidad-desc">Te decimos exactamente qué grabar, desde qué ángulo y con qué luz, paso a paso, para que sea fácil hacerlo con tu propio móvil. Tú nos envías los vídeos sin editar y nosotros los preparamos con música, textos y los publicamos.</p>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<section id="proceso">
+  <div class="process-intro">
+    <div>
+      <p class="section-eyebrow">Cómo trabajamos</p>
+      <h2 class="section-title">Del <em>primer contacto</em> al primer viral</h2>
+    </div>
+    <p class="section-body">Un proceso sencillo y sin complicaciones. En pocos días tu propiedad ya tiene contenido en marcha y un plan claro para conseguir más reservas cada mes.</p>
+  </div>
+  <div class="process-steps">
+    <div class="process-step">
+      <div class="step-num"><span>01</span></div>
+      <h3 class="step-title">Hablamos</h3>
+      <p class="step-desc">Te llamamos o escribimos para conocer tu alojamiento y lo que necesitas, sin ningún compromiso.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num"><span>02</span></div>
+      <h3 class="step-title">Hacemos un plan</h3>
+      <p class="step-desc">Decidimos juntos qué tipo de contenido vamos a publicar y con qué frecuencia, según tu alojamiento.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num"><span>03</span></div>
+      <h3 class="step-title">Grabamos y editamos</h3>
+      <p class="step-desc">Grabamos en tu propiedad o te guiamos para que lo hagas tú. Después editamos cada vídeo.</p>
+    </div>
+    <div class="process-step">
+      <div class="step-num"><span>04</span></div>
+      <h3 class="step-title">Publicamos y crecemos</h3>
+      <p class="step-desc">Subimos el contenido, respondemos a quien pregunte y cada mes te contamos cómo va todo.</p>
+    </div>
+  </div>
+</section>
+
+<div class="gold-divider"></div>
+
+<section id="contacto">
+  <div class="cta-bg"></div>
+  <div class="cta-content">
+    <p class="section-eyebrow">Hablemos</p>
+    <h2 class="cta-title">¿Listo para <em>llenar tu calendario</em> de reservas?</h2>
+    <p class="cta-sub">Cuéntanos sobre tu alojamiento y te preparamos una propuesta gratuita sin compromiso.<br>Te respondemos en menos de 24 horas.</p>
+    <a onclick="window.open(WA,'_blank')" class="cta-primary" style="cursor:pointer;">Solicitar propuesta gratuita</a>
+    <a onclick="window.open(WA,'_blank')" class="cta-whatsapp" style="cursor:pointer;">
+      <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+      +34 644 977 487
+    </a>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo">MK GROWTH CO</div>
+  <p class="footer-copy">© 2025 MK Growth Co. Todos los derechos reservados.</p>
+  <div class="footer-links">
+    <a href="#">Instagram</a>
+    <a href="#">TikTok</a>
+    <a href="#">Privacidad</a>
+  </div>
+</footer>
+
+</body>
+</html>
